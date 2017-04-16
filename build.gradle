@@ -45,10 +45,12 @@ mainClassName = 'misaka.lab.jni.App'
 
 def nativeRoot = 'src/main/cpp'
 def nativeLib = 'JniHello'
-
-tasks.withType(JavaExec) {
+def setNativeLibPath = {
   systemProperty 'java.library.path', buildDir
 }
+
+test setNativeLibPath
+run setNativeLibPath
 
 task jniHeaders(type:Exec) {
   def classpath = sourceSets.main.output.classesDir
